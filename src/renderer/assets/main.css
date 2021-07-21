@@ -1,0 +1,60 @@
+
+#wrapper {
+    background:
+            radial-gradient(
+                    ellipse at top left,
+                    rgba(255, 255, 255, 1) 40%,
+                    rgba(229, 229, 229, .9) 100%
+            );
+    height: 100vh;
+    padding: 60px 80px;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: #FFFFFF;
+}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body { font-family: 'SF Pro Display'; height: 100%;}
+
+#app{
+    height: 100%;
+}
+@font-face {
+    font-family: SF Pro Display;
+    font-weight: bold;
+    src: local('./font/SF_Fonts/SF-Pro-Display-Bold.otf');
+}
+
+@font-face {
+    font-family: SF Pro Display;
+    font-weight: normal;
+    src: local('./font/SF_Fonts/SF-Pro-Display-Regular.otf');
+}
+
+@font-face {
+    font-family: Poppins;
+    font-weight: bold;
+    src: local('./font/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: poppins;
+    /*font-weight: 600;*/
+    src: local('./font/poppins/Poppins-Light.ttf');
+}
+
+
+.process-line{
+    background-image: url('./icon/process-line1.png');
+    width: 294px;
+    height: 9px;
+    display: inline-block;
+    background-size: cover;
+}

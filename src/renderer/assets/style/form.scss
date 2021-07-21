@@ -1,0 +1,64 @@
+
+.form{
+  width: 100%;
+  height: 362px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.el-form-item{
+  margin-top: 18.51px;
+  margin-bottom: 0px;
+}
+.el-input__inner{
+  height: 33.44px;
+}
+
+.el-form-item__label{
+  left: 575px;
+  top: 326px;
+  font-family: SF Pro Display;
+  font-weight: bold;
+  font-size: 13px;
+  line-height: 13px;
+  letter-spacing: 0.03em;
+
+  color: #000000;
+}
+.el-button{
+  background: #1840C1;
+  border-radius: 4px;
+  width: 100%;
+  height: 30px;
+  line-height: 0;
+  color: #ffffff;
+}
+.el-checkbox{
+  display: flex;
+}
+.el-checkbox__input .el-checkbox__inner{
+  width: 10.83px;
+  height: 10.83px;
+  background: url("../icon/checkbox.png");
+  background-size: cover;
+  border: 0px;
+}
+ .is-checked .el-checkbox__inner{
+  width: 10.83px;
+  height: 10.83px;
+  background: url("../icon/checked.png");
+  background-size: cover;
+  border: 0px;
+   border-color: white;
+   background-color: white;
+}
+
+.el-checkbox, .el-checkbox__input{
+  white-space: normal;
+}
+.el-form-item__content{
+  line-height: 0px;
+}
+.el-input{
+  margin-top: 10px;
+}
