@@ -64,7 +64,6 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-
     "element-ui": "^2.15.3",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-node": "^11.1.0",
