@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="page">
     <div class="line1">
       <ImportAddress @onChange=changeContractAddress />
       <ImportABI @onChange="changeABI"/>
       <SelectWallet @onChange="changeWallet"/>
     </div>
     <Buttons :abi="abi" :isOk="isOk" :loading="loading" @onClick="onClick"/>
-    <Result :result="result" :loading="loading"/>
+      <Result :result="result" :loading="loading" @cancel="cancel"/>
   </div>
 </template>
 
@@ -115,11 +115,19 @@ export default {
         this.loading = false;
       }
     },
+    cancel() {
+      this.loading = false;
+    },
   },
 };
 </script>
 
 <style scoped>
+.page{
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 220px);
+}
 .line1{
   display: flex;
   flex-direction: row;

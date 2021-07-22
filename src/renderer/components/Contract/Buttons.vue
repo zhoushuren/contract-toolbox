@@ -142,7 +142,7 @@ export default {
 <style lang="scss" scoped>
 .box {
   width: 100%;
-  height: 100%;
+  //height: 100%;
   background: #FFFFFF;
   box-shadow: 0px 6px 18px rgba(15, 65, 140, 0.08);
   border-radius: 8px;
