@@ -1,13 +1,12 @@
 <template>
   <div class="box">
     Contract execution result:
-    <p class="json-text">
+    <p class="text" v-if="loading">
+      Loading...
+    </p>
+    <p class="json-text" v-else>
       <vue-json-pretty :path="'root'" :showLength="true" :data="result" :showSelectController="true" @click="handleClick"> </vue-json-pretty>
     </p>
-    <p class="text">
-
-    </p>
-
   </div>
 </template>
 
@@ -20,6 +19,10 @@ export default {
     result: {
       type: Object,
       default: {},
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
   components: {

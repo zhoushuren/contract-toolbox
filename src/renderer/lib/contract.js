@@ -13,11 +13,11 @@ window.web3 = new Web3();
 
 window.web3.setProvider(new Web3.providers.HttpProvider('https://fsn.dev/api'));
 
-// eslint-disable-next-line import/prefer-default-export
-export async function buildTx(fromAddress, ABI, contractAddress, fun, funParams) {
+// eslint-disable-next-line import/prefer-default-export,max-len
+export async function buildTx(fromAddress, myContract, contractAddress, fun, funParams, privateKey) {
   // eslint-disable-next-line
   // console.log('buildTx', fromAddress, ABI, contractAddress, fun, funParams);
-  const myContract = new window.web3.eth.Contract(JSON.parse(ABI), contractAddress);
+  // const myContract = new window.web3.eth.Contract(JSON.parse(ABI), contractAddress);
   const count = await window.web3.eth.getTransactionCount(fromAddress);
   const gasLimit = 200000;
   const data = await myContract.methods[fun](...funParams).encodeABI();
@@ -40,11 +40,11 @@ export async function buildTx(fromAddress, ABI, contractAddress, fun, funParams)
     chainId: 32659,
   }, 'byzantium');
 
-  console.log(rawTransaction);
+  // console.log(rawTransaction);
 
   window.tx = new Transaction(rawTransaction, { common: FSN_MAIN });
   // const privateKey1 = Buffer.from(this.fromprivateKey, 'hex')
-  const privateKey = 'cd0f9bcc719b63744d1aa2d0420dfa337aa77ac64a4dfec15437e3fd0d965edc';
+  // const privateKey = 'cd0f9bcc719b63744d1aa2d0420dfa337aa77ac64a4dfec15437e3fd0d965edc';
   // const privateKey2 = privateKey.split('x')[1];
   window.tx.sign(Buffer.from(privateKey, 'hex'));
   return window.tx;
@@ -56,9 +56,9 @@ export async function sendTx(raw) {
   return window.web3.eth.sendSignedTransaction(`0x${raw}`);
 }
 
-export async function callView(ABI, contractAddress, fun, funParams) {
-  console.log('call:', fun, funParams);
-  const myContract = new window.web3.eth.Contract(JSON.parse(ABI), contractAddress);
+export async function callView(myContract, fun, funParams) {
+  console.log('callView:', fun, funParams);
+  // const myContract = new window.web3.eth.Contract(JSON.parse(ABI), contractAddress);
   const data = await myContract.methods[fun](...funParams).call();
   return data;
 }
@@ -66,4 +66,8 @@ export async function callView(ABI, contractAddress, fun, funParams) {
 export function privateKeyToAddress(pk) {
   const data = window.web3.eth.accounts.privateKeyToAccount(pk);
   return data.address;
+}
+
+export function getContract(ABI, contractAddress) {
+  return new window.web3.eth.Contract(JSON.parse(ABI), contractAddress);
 }

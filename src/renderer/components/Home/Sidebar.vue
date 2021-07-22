@@ -14,18 +14,19 @@
                 <div class="line"></div>
             </div>
         </div>
+
         <div class="settings">
             <img src="../../assets/icon/settings.png" alt="">
+          <div class="network">NETWORK: FUSION </div>
         </div>
+
     </div>
 </template>
 
 <script>
   import { mapState } from 'vuex';
-  import TitleButton from '../TitleButton';
   export default {
     components: {
-      TitleButton,
     },
     methods: {
       select(label) {
@@ -182,12 +183,25 @@
     }
 }
 .settings{
+    position:absolute;
+    bottom: 0;
     background: #FFFFFF;
-
+    display: flex;
+    justify-content: space-between;
     img{
         width: 28px;
         height: 28px;
         margin: 0px 0px 37px 52px;
     }
+  .network{
+    height: 28px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size:14px;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 18px;
+  }
 }
 </style>

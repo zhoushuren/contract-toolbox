@@ -2,19 +2,19 @@
   <div class="box">
     <el-form :inline="true" class="demo-form-inline">
       <el-form-item v-for="(val, index ) in funcNoParams" class="form-label">
-        <el-button :disabled="!isOk" type="primary" @click="call(index, val.name)" v-if="!val.select && val.stateMutability === 'nonpayable'">{{val.name}}</el-button>
-        <el-button :disabled="!isOk" :loading="loading" v-else-if="val.stateMutability === 'view' && !val.select" type="success" @click="callNoParams(index, val.name, val.stateMutability)">{{val.name}}</el-button>
+        <el-button size="mini" :disabled="!isOk" :loading="loading" type="primary" @click="call(index, val.name)" v-if="!val.select && val.stateMutability === 'nonpayable'">{{val.name}}</el-button>
+        <el-button size="mini" :disabled="!isOk" :loading="loading" v-else-if="val.stateMutability === 'view' && !val.select" type="success" @click="callNoParams(index, val.name, val.stateMutability)">{{val.name}}</el-button>
       </el-form-item>
 
       <!--params-->
       <el-form-item v-for="(val, index ) in abiFun" class="form-label">
-        <el-input  v-model="formString[val.name]" :placeholder="val.name" v-if="!val.select && val.inputs.length > 0"></el-input>
+        <el-input size="mini" v-model="formString[val.name]" :placeholder="val.name" v-if="!val.select && val.inputs.length > 0"></el-input>
         <i v-if="val.inputs.length >1 " class="el-icon-arrow-down"  @click="select(index)" />
-        <el-button @click="callStringParams(index, val.name, val.stateMutability)" :disabled="!isOk" type="primary" v-if="!val.select">{{val.name}}</el-button>
+        <el-button size="mini" @click="callStringParams(index, val.name, val.stateMutability)" :loading="loading" :disabled="!isOk" type="primary" v-if="!val.select">{{val.name}}</el-button>
 
         <div class="sub-input" v-if="val.select">
-          <el-input v-for="inp in val.inputs" v-model="form[inp.name]" :placeholder="inp.name + '(' + inp.type + ')' " />
-          <el-button :disabled="!isOk" type="primary" @click="callParams(index, val.name, val.stateMutability)">{{val.name}}</el-button>
+          <el-input size="mini"  v-for="inp in val.inputs" v-model="form[inp.name]" :placeholder="inp.name + '(' + inp.type + ')' " />
+          <el-button size="mini" :disabled="!isOk" type="primary" :loading="loading" @click="callParams(index, val.name, val.stateMutability)">{{val.name}}</el-button>
         </div>
       </el-form-item>
     </el-form>
@@ -32,6 +32,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -44,7 +48,6 @@ export default {
       funcNoParams: [],
       form: [],
       formString: [],
-      loading: false,
     };
   },
   computed: {

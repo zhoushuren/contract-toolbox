@@ -5,8 +5,8 @@
       <ImportABI @onChange="changeABI"/>
       <SelectWallet @onChange="changeWallet"/>
     </div>
-    <Buttons :abi="abi" :isOk="isOk" @onClick="onClick"/>
-    <Result :result="result"/>
+    <Buttons :abi="abi" :isOk="isOk" :loading="loading" @onClick="onClick"/>
+    <Result :result="result" :loading="loading"/>
   </div>
 </template>
 
@@ -16,7 +16,7 @@ import ImportAddress from './ImportAddress';
 import SelectWallet from './SelectWallet';
 import Buttons from './Buttons';
 import Result from './Result';
-import { buildTx, callView, sendTx } from '../../lib/contract';
+import { buildTx, callView, sendTx, getContract } from '../../lib/contract';
 export default {
   data() {
     return {
@@ -27,6 +27,8 @@ export default {
       result: {},
       isOk: false,
       loading: false,
+      contract: {},
+      privateKey: '',
     };
   },
   components: {
@@ -49,15 +51,18 @@ export default {
     changeWallet({
       wallet,
       address,
+      privateKey,
     }) {
       console.log(wallet, address);
       this.selectWalletIndex = wallet;
       this.selectWalletAddress = address;
+      this.privateKey = privateKey;
       this.checkStatus();
     },
     checkStatus() {
       console.log('checkStatus', this.selectWalletAddress, this.contractAddress);
       if (this.abi !== '' && this.selectWalletAddress !== '' && this.contractAddress !== '') {
+        this.contract = getContract(this.abi, this.contractAddress);
         this.isOk = true;
       }
     },
@@ -78,28 +83,36 @@ export default {
       name,
       paramsArr,
     }) {
-      console.log('callView2', name, paramsArr);
+      // console.log('callView2', name, paramsArr);
       this.loading = true;
-      console.log('callView2', this.abi, this.contractAddress, name, paramsArr);
-      const data = await callView(this.abi, this.contractAddress, name, paramsArr);
-      console.log(data);
-      // this.$store.dispatch('addResult', { data });
-      this.result = { data };
-      this.loading = false;
+      // console.log('callView2', this.abi, this.contractAddress, name, paramsArr);
+      try {
+        const data = await callView(this.contract, name, paramsArr);
+        // console.log(data);
+        // this.$store.dispatch('addResult', { data });
+        this.result = { data };
+        this.loading = false;
+      } catch (e) {
+        this.result = { error: e };
+        this.loading = false;
+      }
     },
     async sendTx(name, params) {
+      this.loading = true;
       console.log('sendTx page', name, params);
       console.log('sendTx page', this.selectWalletAddress, this.abi, this.contractAddress, name, params);
       // eslint-disable-next-line max-len
-      const tx = await buildTx(this.selectWalletAddress, this.abi, this.contractAddress, name, params);
+      const tx = await buildTx(this.selectWalletAddress, this.contract, this.contractAddress, name, params, this.privateKey);
       try {
         const data = await sendTx(tx.serialize().toString('hex'));
         // console.log('res', res);
         this.result = data;
         // this.$store.dispatch('addResult', res);
+        this.loading = false;
       } catch (e) {
         console.error('error:', e);
         this.result = { error: e };
+        this.loading = false;
       }
     },
   },

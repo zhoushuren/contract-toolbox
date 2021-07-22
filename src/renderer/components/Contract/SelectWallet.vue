@@ -31,7 +31,9 @@ export default {
       // this.$store.dispatch('changeABI', this.abiJSON);
       // eslint-disable-next-line prefer-destructuring
       const address = this.wallets[this.account].address;
-      this.$emit('onChange', { address, wallet: this.account });
+      // eslint-disable-next-line prefer-destructuring
+      const privateKey = this.wallets[this.account].privateKey;
+      this.$emit('onChange', { address, wallet: this.account, privateKey });
     },
   },
 };
