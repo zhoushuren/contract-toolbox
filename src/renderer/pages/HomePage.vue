@@ -3,8 +3,8 @@
         <Sidebar/>
         <div class="right">
           <Top/>
-          <WalletContent v-if="navigate === 'wallet'"/>
-          <ContractContent v-if="navigate === 'account'"/>
+          <WalletContent v-show="navigate === 'wallet'"/>
+          <ContractContent v-show="navigate === 'account'"/>
         </div>
     </div>
 </template>
