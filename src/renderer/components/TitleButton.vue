@@ -1,31 +1,21 @@
 <template>
     <div class="title-button">
-        <div class="close" @click="close">
-            <i class="x"></i>
-            <i class="y"></i>
-        </div>
-        <div class="min" @click="min">
-            <i class="x"></i>
-        </div>
-        <div class="max">
-
-        </div>
     </div>
 </template>
 
 <script>
-  import { ipcRenderer } from 'electron';
+  // import { ipcRenderer } from 'electron';
   export default {
     methods: {
-      min() {
-        ipcRenderer.send('min');
-      },
-      max() {
-        ipcRenderer.send('max');
-      },
-      close() {
-        ipcRenderer.send('close');
-      },
+      // min() {
+      //   ipcRenderer.send('min');
+      // },
+      // max() {
+      //   ipcRenderer.send('max');
+      // },
+      // close() {
+      //   ipcRenderer.send('close');
+      // },
     },
   };
 </script>

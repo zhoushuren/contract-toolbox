@@ -69,7 +69,6 @@
             margin-left: 10px;
             display: inline-block;
             float: left;
-            width: 123px;
             height: 23px;
         }
     }

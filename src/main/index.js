@@ -24,6 +24,12 @@ function createWindow() {
     resizable: true,
     width: 1440,
     fullscreen: false,
+    webPreferences: {
+      nodeIntegration: true,
+      nodeIntegrationInWorker: true,
+      enableRemoteModule: true,
+      contextIsolation: false,
+    },
     // frame: false,
   });
 

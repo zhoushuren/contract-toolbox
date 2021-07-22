@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+
     "element-ui": "^2.15.3",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-node": "^11.1.0",
@@ -81,6 +82,7 @@
     "web3": "^1.4.0"
   },
   "devDependencies": {
+    "electron": "^13.1.7",
     "ajv": "^6.5.0",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
@@ -99,9 +101,9 @@
     "css-loader": "^0.28.11",
     "del": "^3.0.0",
     "devtron": "^1.4.0",
-    "electron-builder": "^20.19.2",
-    "electron-debug": "^1.5.0",
-    "electron-devtools-installer": "^2.2.4",
+    "electron-builder": "^22.11.7",
+    "electron-debug": "^3.2.0",
+    "electron-devtools-installer": "^3.2.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-friendly-formatter": "^4.0.1",
